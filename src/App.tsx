@@ -169,7 +169,7 @@ function App() {
                 <MapPin className="w-6 h-6 mr-3 text-red-400" />
                 <div className="text-left">
                   <div className="text-sm text-gray-400">Venue</div>
-                  <div className="font-semibold">BIC/MIC, Mumbai</div>
+                  <div className="font-semibold">Madras International Circuit, Mumbai, India</div>
                 </div>
               </div>
             </div>
@@ -237,7 +237,7 @@ function App() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-white">Time</h4>
-                    <p className="text-gray-300">06:30 PM - 10:00 PM</p>
+                    <p className="text-gray-300">10:00 AM Onwards</p>
                   </div>
                 </div>
                 
@@ -247,8 +247,8 @@ function App() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-white">Venue</h4>
-                    <p className="text-gray-300">BIC/MIC</p>
-                    <p className="text-gray-400 text-sm"> Mumbai</p>
+                    <p className="text-gray-300">Madras International Circuit</p>
+                    <p className="text-gray-400 text-sm"> Mumbai, India</p>
                   </div>
                 </div>
               </div>
@@ -479,7 +479,7 @@ function App() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <Mail className="w-5 h-5 text-red-400" />
-                  <span className="text-gray-300">cioconnect@nttdata.com</span>
+                  <span className="text-gray-300">cioconnect@theaddressevents.com</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Phone className="w-5 h-5 text-red-400" />
@@ -511,7 +511,7 @@ function App() {
           <div className="border-t border-gray-800 pt-8 mt-8 text-center">
             <p className="text-gray-400">
               © 2025 NTT DATA Corporation. All rights reserved. | 
-              <span className="text-red-400 ml-1">CIO CONNECT - Speed Racing to the Future</span>
+              <span className="text-red-400 ml-1">CIO CONNECT - Racing to the Future</span>
             </p>
           </div>
         </div>
