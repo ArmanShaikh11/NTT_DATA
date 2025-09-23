@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Calendar, Clock, MapPin, Menu, X, Users, Target, Zap, Mail, Phone, Linkedin, Twitter, Facebook, CheckCircle, Building, User, Briefcase } from 'lucide-react';
+import emailjs from 'emailjs-com';
+import { Building, Calendar, CheckCircle, Clock, Facebook, Linkedin, Mail, MapPin, Menu, Phone, Target, Twitter, User, Users, X, Zap } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -52,11 +53,21 @@ function App() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    // Here you would typically send the data to your backend
-    console.log('Form submitted:', formData);
+    try {
+      // Replace these with your EmailJS service, template, and user IDs
+      const serviceID = "service_8ev50kf";
+      const templateID = 'template_7w512bd';
+      const userID = 'QO7deN4L2UmJC90dc';
+
+      await emailjs.send(serviceID, templateID, formData, userID);
+      setIsSubmitted(true);
+      console.log('Email sent:', formData);
+    } catch (error) {
+      alert('Failed to send registration. Please try again.');
+      console.error('EmailJS error:', error);
+    }
   };
 
   const Navigation = () => (
@@ -123,7 +134,7 @@ function App() {
       <Navigation />
       
       {/* Home Section */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section id="home" className="relative min-h-screen pt-20 flex items-center justify-center overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
@@ -169,7 +180,7 @@ function App() {
                 <MapPin className="w-6 h-6 mr-3 text-red-400" />
                 <div className="text-left">
                   <div className="text-sm text-gray-400">Venue</div>
-                  <div className="font-semibold">BIC/MIC, Mumbai</div>
+                  <div className="font-semibold">Madras International Circuit, Mumbai, India</div>
                 </div>
               </div>
             </div>
@@ -195,7 +206,7 @@ function App() {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
           style={{
-            backgroundImage: `url('/F1_Car.png)`,
+            backgroundImage:` url('/F1_Car.png')`,
             filter: 'blur(2px)'
           }}
         />
@@ -237,7 +248,7 @@ function App() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-white">Time</h4>
-                    <p className="text-gray-300">06:30 PM - 10:00 PM</p>
+                    <p className="text-gray-300">10:00 AM Onwards</p>
                   </div>
                 </div>
                 
@@ -247,8 +258,8 @@ function App() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-white">Venue</h4>
-                    <p className="text-gray-300">BIC/MIC</p>
-                    <p className="text-gray-400 text-sm"> Mumbai</p>
+                    <p className="text-gray-300">Madras International Circuit</p>
+                    <p className="text-gray-400 text-sm"> Mumbai, India</p>
                   </div>
                 </div>
               </div>
@@ -356,10 +367,10 @@ function App() {
       <section id="about" className="relative py-20 overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
-          style={{
-            backgroundImage: `url('/F1_Car.png')`,
-            filter: 'blur(3px)'
-          }}
+        style={{
+  backgroundImage: `url('/F1_Car.png')`,
+  filter: 'blur(3px)'
+}}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-blue-900/20 to-gray-900" />
         
@@ -479,7 +490,7 @@ function App() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <Mail className="w-5 h-5 text-red-400" />
-                  <span className="text-gray-300">cioconnect@nttdata.com</span>
+                  <span className="text-gray-300">cioconnect@theaddressevents.com</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Phone className="w-5 h-5 text-red-400" />
@@ -511,7 +522,7 @@ function App() {
           <div className="border-t border-gray-800 pt-8 mt-8 text-center">
             <p className="text-gray-400">
               © 2025 NTT DATA Corporation. All rights reserved. | 
-              <span className="text-red-400 ml-1">CIO CONNECT - Speed Racing to the Future</span>
+              <span className="text-red-400 ml-1">CIO CONNECT - Racing to the Future</span>
             </p>
           </div>
         </div>
