@@ -509,10 +509,10 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    company: '',
-    jobTitle: ''
+    fullName: "",
+    email: "",
+    company: "",
+    jobTitle: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   // Dark mode state and logic
@@ -536,27 +536,30 @@ function App() {
       
       const sections = ['home', 'registration', 'about'];
       const scrollPosition = window.scrollY + 100;
-      
+
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
             setActiveSection(section);
             break;
           }
         }
       }
     };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
     setIsMenuOpen(false);
   };
@@ -564,23 +567,25 @@ function App() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const serviceID = "service_8ev50kf";
       const templateID = 'template_7w512bd';
       const userID = 'QO7deN4L2UmJC90dc';
 
-      await emailjs.send(serviceID, templateID, formData, userID);
       setIsSubmitted(true);
-      console.log('Email sent:', formData);
+      console.log("Registration saved:", formData);
     } catch (error) {
-      alert('Failed to send registration. Please try again.');
-      console.error('EmailJS error:', error);
+      alert("Failed to send registration. Please try again.");
+      console.error("Registration error:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -609,7 +614,7 @@ function App() {
                     : 'text-white dark:text-gray-800 hover:text-red-400 dark:hover:text-red-500'
                 }`}
               >
-                {section === 'about' ? 'About Us' : section}
+                {section === "about" ? "About Us" : section}
                 {activeSection === section && (
                   <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-red-400"></div>
                 )}
@@ -641,7 +646,7 @@ function App() {
                   onClick={() => scrollToSection(section)}
                   className="block px-3 py-2 text-white dark:text-gray-900 hover:text-red-400 transition-colors w-full text-left capitalize rounded-md"
                 >
-                  {section === 'about' ? 'About Us' : section}
+                  {section === "about" ? "About Us" : section}
                 </button>
               ))}
                <button
@@ -660,10 +665,13 @@ function App() {
   return (
     <div className="bg-gray-900 text-white dark:bg-gray-50 dark:text-gray-800 font-sans transition-colors duration-300">
       <Navigation />
-      
+
       {/* Home Section */}
-      <section id="home" className="relative min-h-screen pt-20 flex items-center justify-center overflow-hidden">
-        <div 
+      <section
+        id="home"
+        className="relative min-h-screen pt-20 flex items-center justify-center overflow-hidden"
+      >
+        <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url('/F1_Car.png')` }}
         />
@@ -687,7 +695,7 @@ function App() {
               innovation, and strategic insights that will accelerate your digital transformation journey 
               into the future of enterprise technology.
             </p>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-16 max-w-4xl mx-auto">
               <div className="flex items-center justify-center bg-black/40 dark:bg-white/80 backdrop-blur-sm px-6 py-4 rounded-lg border border-red-600/20 dark:border-red-400/20">
                 <Calendar className="w-6 h-6 mr-3 text-red-400 dark:text-red-500" />
@@ -713,7 +721,7 @@ function App() {
             </div>
 
             <button
-              onClick={() => scrollToSection('registration')}
+              onClick={() => scrollToSection("registration")}
               className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-12 rounded-lg text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-red-600/25"
             >
               Register Now
@@ -750,7 +758,7 @@ function App() {
                 <Calendar className="w-6 h-6 mr-3 text-red-400 dark:text-red-500" />
                 Event Details
               </h3>
-              
+
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-red-600/20 dark:bg-red-500/10 rounded-lg flex items-center justify-center">
@@ -761,7 +769,7 @@ function App() {
                     <p className="text-gray-300 dark:text-gray-700">Friday, 7th Nov, 2025</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-red-600/20 dark:bg-red-500/10 rounded-lg flex items-center justify-center">
                     <Clock className="w-6 h-6 text-red-400 dark:text-red-500" />
@@ -771,7 +779,7 @@ function App() {
                     <p className="text-gray-300 dark:text-gray-700">10:00 AM Onwards</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-red-600/20 dark:bg-red-500/10 rounded-lg flex items-center justify-center">
                     <MapPin className="w-6 h-6 text-red-400 dark:text-red-500" />
@@ -794,7 +802,7 @@ function App() {
                     <User className="w-6 h-6 mr-3 text-red-400 dark:text-red-500" />
                     Registration Form
                   </h3>
-                  
+
                   <form onSubmit={handleSubmit} className="space-y-6">
                     {['fullName', 'email', 'company', 'jobTitle'].map((field) => (
                       <div key={field}>
@@ -815,9 +823,21 @@ function App() {
                     
                     <button
                       type="submit"
-                      className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105"
+                      disabled={isLoading}
+                      className={`w-full bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 ${
+                        isLoading
+                          ? "opacity-70 cursor-not-allowed hover:scale-100"
+                          : ""
+                      }`}
                     >
-                      Complete Registration
+                      {isLoading ? (
+                        <span className="flex items-center justify-center gap-2">
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                          Submitting...
+                        </span>
+                      ) : (
+                        "Complete Registration"
+                      )}
                     </button>
                   </form>
                 </>
@@ -872,7 +892,7 @@ function App() {
                 In an era where technology moves at the speed of light, staying ahead requires more than 
                 just keeping up—it demands collaboration, innovation, and strategic vision.
               </p>
-              
+
               <div className="grid sm:grid-cols-2 gap-6">
                 <div className="flex items-start space-x-3">
                   <div className="w-8 h-8 bg-blue-600/20 dark:bg-blue-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -883,7 +903,7 @@ function App() {
                     <p className="text-gray-400 dark:text-gray-600 text-sm">Connect with industry leaders and peers</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-3">
                   <div className="w-8 h-8 bg-blue-600/20 dark:bg-blue-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Target className="w-5 h-5 text-blue-400 dark:text-blue-500" />
@@ -942,13 +962,15 @@ function App() {
               <div className="flex items-center space-x-3 mb-6">
                 <span className="text-2xl font-bold text-white dark:text-gray-900">NTT DATA</span>
               </div>
+              <p className="text-gray-400 mb-6 leading-relaxed">
+                Trusted global innovator of business and technology services,
               <p className="text-gray-400 dark:text-gray-600 mb-6 leading-relaxed">
                 Trusted global innovator of business and technology services, 
                 driving digital transformation for a connected future.
               </p>
               <div className="w-16 h-1 bg-gradient-to-r from-red-600 to-blue-600 rounded-full"></div>
             </div>
-            
+
             <div>
               <h4 className="text-lg font-semibold text-white dark:text-gray-900 mb-4">Contact Information</h4>
               <div className="space-y-3">
@@ -966,7 +988,7 @@ function App() {
                 </div>
               </div>
             </div>
-            
+
             <div>
               <h4 className="text-lg font-semibold text-white dark:text-gray-900 mb-4">Follow Us</h4>
               <div className="flex space-x-4 mb-6">

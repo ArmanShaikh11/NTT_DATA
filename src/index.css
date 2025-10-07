@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
 * {
   margin: 0;
@@ -15,10 +15,35 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/*
+  Theme variables
+  - We use CSS variables for background and text so the whole page can
+    transition smoothly between light and dark modes without changing markup.
+*/
+:root {
+  --bg-color: #ffffff; /* Light background */
+  --text-color: #111827; /* Dark text (gray-900) */
+}
+
+/* Dark theme overrides when [data-theme="dark"] is set on <html> */
+[data-theme="dark"] {
+  --bg-color: #111827; /* Dark background (gray-900) */
+  --text-color: #f3f4f6; /* Light text (gray-100) */
+}
+
+/* Apply variables globally and animate transitions */
+html,
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 300ms ease, color 300ms ease;
 }
 
 @keyframes fade-in-up {
@@ -55,12 +80,16 @@ body {
 }
 
 /* Smooth transitions for all interactive elements */
-button, a, input {
+button,
+a,
+input {
   transition: all 0.3s ease;
 }
 
 /* Focus styles for accessibility */
-button:focus-visible, a:focus-visible, input:focus-visible {
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
   outline: 2px solid #dc2626;
   outline-offset: 2px;
 }
@@ -106,19 +135,25 @@ input:focus {
 }
 
 .racing-stripe::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.3), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(220, 38, 38, 0.3),
+    transparent
+  );
   animation: racing-stripe 3s infinite;
 }
 
 /* Pulse animation for CTA buttons */
 @keyframes pulse-red {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
   }
   50% {
